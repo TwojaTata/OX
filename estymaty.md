@@ -23,10 +23,3 @@ Data        |                      Pesymistyczna                    |           
 
 
 
-Lista zadań
-
-14.03
-
-Konfig
-Pobieranie danych -> do konfigu
-Tworzenie boardu na podstawie konfigu
