@@ -14,4 +14,5 @@ public class PlayerTest {
         assert player.equals(new Player("Patryk",false,Marker.CROSS)) : "should be equal";
     }
 
+
 }

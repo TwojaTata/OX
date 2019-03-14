@@ -12,14 +12,17 @@ public class BoardConfig {
     public int rows;
     public int columns;
     public int winingConditionLength;
-    public List<Player> players;
+    public List<Player> players = new ArrayList<>(2);
 
-    BoardConfig(int rows, int columns, int winingCondition, List<Player> players) {
+    BoardConfig(){
+
+    }
+    BoardConfig(int rows, int columns, int winingCondition) {
         this.rows = rows;
         this.columns = columns;
         this.winingConditionLength = winingCondition;
-        this.players = players;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -35,5 +38,9 @@ public class BoardConfig {
     @Override
     public int hashCode() {
         return Objects.hash(rows, columns, winingConditionLength, players);
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
     }
 }
