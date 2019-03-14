@@ -62,11 +62,21 @@ public class BoardTest {
         assert board.board[rows][columns].equals(markerBlank) : "all field should be blanks";
     }
 
-    @Test
-    public void putMarkerOnAGivenSlot(){
+    @DataProvider(name = "putMarkerDP")
+    public static Object[][] putMarkerDP() {
+        return new Object[][]{
+                {5,5},
+                {0,0},
+                {5,6},
+                {5,8},
+                {5,1}};
+    }
+
+    @Test(dataProvider = "putMarkerDP")
+    public void putMarkerOnAGivenSlot(int row, int column){
         Board board = new Board(10,10,5);
         board.fillBoardWithBlanks();
-        board.putMarker(5,5,Marker.CIRCLE);
-        assert board.board[5][5].equals(Marker.CIRCLE): "should be circle";
+        board.putMarker(row,column,Marker.CIRCLE);
+        assert board.board[row][column].equals(Marker.CIRCLE): "should be circle";
     }
 }

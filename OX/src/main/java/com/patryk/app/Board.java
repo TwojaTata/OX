@@ -1,5 +1,6 @@
 package com.patryk.app;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -7,9 +8,9 @@ import java.util.List;
  */
 public class Board extends BoardConfig{
 
-    Marker[][] board;
+    public Marker[][] board;
 
-    Board(int rows, int columns, int winningCondition){
+    public Board(int rows, int columns, int winningCondition){
         super(rows, columns, winningCondition);
         this.board = new Marker[super.rows][super.columns];
     }
@@ -24,5 +25,13 @@ public class Board extends BoardConfig{
 
     public void putMarker(int row, int column, Marker marker) {
         board[row][column] = marker;
+    }
+    public void displayBoard(){
+        for (int i = 0; i < rows; i++) {
+            System.out.println();
+            for (int j = 0; j < columns; j++) {
+                System.out.print("[" + board[i][j].valueToDisplay + "]");
+            }
+        }
     }
 }
