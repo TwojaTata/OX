@@ -1,5 +1,7 @@
 package com.patryk.app;
 
+import com.patryk.app.models.Marker;
+import com.patryk.app.models.Player;
 import org.testng.annotations.Test;
 
 /**
@@ -10,7 +12,7 @@ public class PlayerTest {
 
     @Test
     public void createPlayerTest(){
-        Player player = new Player("Patryk",false,Marker.CROSS);
+        Player player = new Player("Patryk",false, Marker.CROSS);
         assert player.equals(new Player("Patryk",false,Marker.CROSS)) : "should be equal";
     }
 

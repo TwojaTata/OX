@@ -1,4 +1,4 @@
-package com.patryk.app;
+package com.patryk.app.models;
 
 import java.util.Objects;
 
@@ -30,5 +30,14 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name, hasTurn, marker);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", hasTurn=" + hasTurn +
+                ", marker=" + marker +
+                '}';
     }
 }

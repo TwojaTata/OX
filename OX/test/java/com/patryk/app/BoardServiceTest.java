@@ -1,17 +1,18 @@
 package com.patryk.app;
 
+import com.patryk.app.models.Board;
+import com.patryk.app.models.Marker;
+import com.patryk.app.services.BoardService;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Patryk Kucharski
  */
 @Test
-public class BoardTest {
+public class BoardServiceTest {
 
     @Test
     public void createBoardTest(){
@@ -57,8 +58,10 @@ public class BoardTest {
 
     @Test(dataProvider = "blankBoardDP")
     public void fillBoardWithBlanksTest(int rows, int columns, Marker markerBlank){
+        BoardService boardService = new BoardService();
         Board board = new Board(10,10,5);
-        board.fillBoardWithBlanks();
+        boardService.setBoardConfigAndInitializeBoard();
+        boardService.fillBoardWithBlanks(board);
         assert board.board[rows][columns].equals(markerBlank) : "all field should be blanks";
     }
 
@@ -74,9 +77,10 @@ public class BoardTest {
 
     @Test(dataProvider = "putMarkerDP")
     public void putMarkerOnAGivenSlot(int row, int column){
+        BoardService boardService = new BoardService();
         Board board = new Board(10,10,5);
-        board.fillBoardWithBlanks();
-        board.putMarker(row,column,Marker.CIRCLE);
+        boardService.setBoardConfigAndInitializeBoard();
+        boardService.putMarker(row,column,Marker.CIRCLE);
         assert board.board[row][column].equals(Marker.CIRCLE): "should be circle";
     }
 }

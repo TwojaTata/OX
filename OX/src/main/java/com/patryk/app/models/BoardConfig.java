@@ -1,4 +1,4 @@
-package com.patryk.app;
+package com.patryk.app.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +12,16 @@ public class BoardConfig {
     public int rows;
     public int columns;
     public int winingConditionLength;
-    public List<Player> players = new ArrayList<>(2);
+    public List<Player> players;
 
-    BoardConfig(){
-
+    public BoardConfig(){
     }
-    BoardConfig(int rows, int columns, int winingCondition) {
+
+    BoardConfig(final int rows, final int columns, int winingCondition) {
         this.rows = rows;
         this.columns = columns;
         this.winingConditionLength = winingCondition;
+
     }
 
 
@@ -40,7 +41,4 @@ public class BoardConfig {
         return Objects.hash(rows, columns, winingConditionLength, players);
     }
 
-    public void addPlayer(Player player) {
-        players.add(player);
-    }
 }
