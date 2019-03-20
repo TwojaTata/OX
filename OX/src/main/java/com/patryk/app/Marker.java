@@ -1,11 +1,11 @@
-package com.patryk.app.models;
+package com.patryk.app;
 
 /**
  * @author Patryk Kucharski
  */
 public enum Marker {
 
-    CROSS("X"), CIRCLE("O"), BLANK("O");
+    CROSS("X"), CIRCLE("O"), BLANK(" ");
     public String valueToDisplay;
 
     Marker(String valueToDisplay) {

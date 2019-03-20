@@ -1,7 +1,8 @@
-package com.patryk.app.services;
+package com.patryk.app.output;
 
-import com.patryk.app.models.Marker;
-import com.patryk.app.models.Player;
+import com.patryk.app.input.InputAPI;
+import com.patryk.app.Marker;
+import com.patryk.app.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,19 +14,20 @@ import java.util.Scanner;
  */
 public class SettingsService {
 
-    InputValidationService inputValidationService = new InputValidationService();
-    Scanner scanner = new Scanner(System.in);
-    int rows;
-    int columns;
+    private InputAPI inputApi = new InputAPI();
+    private Scanner scanner = new Scanner(System.in);
+    private int rows;
+    private int columns;
 
-    public SettingsService() {
+    SettingsService() {
     }
 
     /**
-     * @param
-     * @return
+     * @param rows
+     * @param columns
+     * @return biggerDimension
      */
-    public int getBiggerDimension(int rows, int columns) {
+    private int getBiggerDimension(int rows, int columns) {
         if (rows > columns) {
             return rows;
         }
@@ -35,13 +37,13 @@ public class SettingsService {
     /**
      * @param dimensionName
      */
-    public int getDimensionFromUser(String dimensionName) {
+    int getDimensionFromUser(String dimensionName) {
         String userAnswer;
 
         do {
             System.out.println("insert number of " + dimensionName);
             userAnswer = scanner.nextLine();
-        } while (!inputValidationService.validateDimension(userAnswer));
+        } while (!inputApi.validateDimension(userAnswer));
         if (dimensionName.equals("rows")){
             rows = Integer.valueOf(userAnswer);
         }else {
@@ -51,21 +53,20 @@ public class SettingsService {
     }
 
     /**
-     * @param
-     * @return
+     *
      */
 
-    public int getWiningConditionLengthFromUser() {
+    int getWiningConditionLengthFromUser() {
         String userAnswer;
 
         do {
             System.out.println("insert number of wining marks in a row");//TODO wymyślić dobre pytanie
             userAnswer = scanner.nextLine();
-        } while (!inputValidationService.validateWiningCondition(userAnswer, getBiggerDimension(rows, columns)));
+        } while (!inputApi.validateWiningCondition(userAnswer, getBiggerDimension(rows, columns)));
         return Integer.valueOf(userAnswer);
     }
 
-    public List<Player> getPlayersInfoFromUser() {
+    List<Player> getPlayersInfoFromUser() {
         String userAnswerPlayerOneName;
         String userAnswerPlayerTwoName;
         String markerPlayerOne;
@@ -74,24 +75,24 @@ public class SettingsService {
         do {
             System.out.println("Insert name of player to begin");
             userAnswerPlayerOneName = scanner.nextLine();
-        } while (!inputValidationService.validateName(userAnswerPlayerOneName));
+        } while (!inputApi.validateName(userAnswerPlayerOneName));
 
         do {
             System.out.println("Insert marker of " + userAnswerPlayerOneName + " (O,X)");
             markerPlayerOne = scanner.nextLine();
-        } while (!inputValidationService.validateMarker(markerPlayerOne));
+        } while (!inputApi.validateMarker(markerPlayerOne));
 
         do {
             System.out.println("Insert name of second player");
             userAnswerPlayerTwoName = scanner.nextLine();
-        } while (!inputValidationService.validateName(userAnswerPlayerTwoName));
+        } while (!inputApi.validateName(userAnswerPlayerTwoName));
 
         players.add(new Player(userAnswerPlayerOneName, true, getMarkerBasedOnUserAnswer(markerPlayerOne).get(0)));
         players.add(new Player(userAnswerPlayerTwoName, false, getMarkerBasedOnUserAnswer(markerPlayerOne).get(1)));
         return players;
     }
 
-    public List<Marker> getMarkerBasedOnUserAnswer(String markerPlayerOne) {
+    private List<Marker> getMarkerBasedOnUserAnswer(String markerPlayerOne) {
 
         List<Marker> markers = new ArrayList<>(2);
         if (markerPlayerOne == null) {

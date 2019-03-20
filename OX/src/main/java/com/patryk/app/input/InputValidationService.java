@@ -1,7 +1,6 @@
-package com.patryk.app.services;
+package com.patryk.app.input;
 
-import com.patryk.app.models.Board;
-import com.patryk.app.models.Marker;
+import com.patryk.app.Board;
 
 import java.util.Scanner;
 
@@ -11,7 +10,7 @@ import java.util.Scanner;
 public class InputValidationService {
 
 
-    public boolean validateDimension(String dimension) {
+    boolean validateDimension(String dimension) {
         int dimensionInt;
         Scanner scanner = new Scanner(System.in);
 
@@ -37,7 +36,7 @@ public class InputValidationService {
         return true;
     }
 
-    public boolean validateName(String name) {
+    boolean validateName(String name) {
         if (name == null) {
             return false;
         }
@@ -49,7 +48,7 @@ public class InputValidationService {
         return true;
     }
 
-    public boolean validateWiningCondition(String winingCondition, int biggerBoardDimension) {
+    boolean validateWiningCondition(String winingCondition, int biggerBoardDimension) {
         int winingConditionInt;
 
         if (winingCondition == null) {
@@ -73,7 +72,7 @@ public class InputValidationService {
         return true;
     }
 
-    public boolean validateMarker(String markerPlayerOne) {
+    boolean validateMarker(String markerPlayerOne) {
 
         if (markerPlayerOne == null) {
             return false;
@@ -86,7 +85,7 @@ public class InputValidationService {
         return false;
     }
 
-    public boolean validateCoordinate(String coordinate, String coordinateName, Board board) {
+    boolean validateCoordinate(String coordinate, String coordinateName, Board board) {
         int coordinateInt;
 
         try {

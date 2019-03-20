@@ -1,6 +1,7 @@
 package com.patryk.app;
 
-import com.patryk.app.services.InputValidationService;
+import com.patryk.app.input.InputAPI;
+import com.patryk.app.input.InputValidationService;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -8,7 +9,7 @@ import org.testng.annotations.Test;
  * @author Patryk Kucharski
  */
 @Test
-public class UserInputValidationTest {
+public class TestInputAPI {
 
     @DataProvider(name = "validateDimensionDP")
     public static Object[][] validateDimensionDP() {
@@ -22,19 +23,19 @@ public class UserInputValidationTest {
 
     @Test(dataProvider = "validateDimensionDP")
     public void validateBoardDimensionTest_ResultTrue(String dimension) throws NumberFormatException {
-        InputValidationService inputValidationService = new InputValidationService();
-        assert inputValidationService.validateDimension(dimension) : "should be true";
+        InputAPI inputAPI = new InputAPI();
+        assert inputAPI.validateDimension(dimension) : "should be true";
     }
 
     @Test//TODO DP
     public void validateNameTest_ResultTrue(){
-        InputValidationService inputValidationService = new InputValidationService();
-        assert inputValidationService.validateName("name") : "should be true";
+        InputAPI inputAPI = new InputAPI();
+        assert inputAPI.validateName("name") : "should be true";
     }
 
     @Test
     public void validateWinningConditionTest_ResultTrue(){
-        InputValidationService inputValidationService = new InputValidationService();
-        assert inputValidationService.validateWiningCondition("5", 10) : "should be true";
+        InputAPI inputAPI = new InputAPI();
+        assert inputAPI.validateWiningCondition("5", 10) : "should be true";
     }
 }

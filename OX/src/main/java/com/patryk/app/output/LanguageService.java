@@ -1,4 +1,4 @@
-package com.patryk.app.services;
+package com.patryk.app.output;
 
 import java.util.Objects;
 import java.util.Optional;

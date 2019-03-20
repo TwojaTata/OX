@@ -1,6 +1,5 @@
-package com.patryk.app.models;
+package com.patryk.app;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

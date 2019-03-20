@@ -1,6 +1,6 @@
 package com.patryk.app;
 
-import com.patryk.app.services.LanguageService;
+import com.patryk.app.output.LanguageService;
 import org.testng.annotations.Test;
 
 /**

@@ -1,6 +1,5 @@
 package com.patryk.app;
 
-import com.patryk.app.models.Marker;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

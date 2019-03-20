@@ -1,6 +1,4 @@
-package com.patryk.app.models;
-
-import java.util.List;
+package com.patryk.app;
 
 /**
  * @author Patryk Kucharski
@@ -13,9 +11,6 @@ import java.util.List;
 public class Board extends BoardConfig {
 
     public Marker[][] board;
-
-    public Board(){
-    }
 
     public Board(int rows, int columns, int winningCondition){
         super(rows, columns, winningCondition);

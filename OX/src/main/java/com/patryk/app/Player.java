@@ -1,4 +1,4 @@
-package com.patryk.app.models;
+package com.patryk.app;
 
 import java.util.Objects;
 
@@ -15,6 +15,18 @@ public class Player {
         this.name = name;
         this.hasTurn = hasTurn;
         this.marker = marker;
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public boolean hasTurn() {
+        return hasTurn;
+    }
+
+    public void setTurn(boolean hasTurn) {
+        this.hasTurn = hasTurn;
     }
 
     @Override
@@ -39,5 +51,9 @@ public class Player {
                 ", hasTurn=" + hasTurn +
                 ", marker=" + marker +
                 '}';
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
