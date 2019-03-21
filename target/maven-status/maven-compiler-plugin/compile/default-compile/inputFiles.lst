@@ -1,0 +1,17 @@
+/home/patryk/kod/OX/src/main/java/com/patryk/app/controllers/TurnController.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/gameLogic/BoardService.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/BoardConfig.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/Starter.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/Marker.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/input/InputAPI.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/Board.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/output/OutputAPI.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/controllers/MainController.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/gameLogic/BoardServiceAPI.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/output/Printer.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/Game.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/output/SettingsService.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/Player.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/output/LanguageService.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/gameLogic/GameJudge.java
+/home/patryk/kod/OX/src/main/java/com/patryk/app/input/InputValidationService.java
