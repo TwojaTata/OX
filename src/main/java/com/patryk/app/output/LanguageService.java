@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class LanguageService {
 
-    private ResourceBundle resourceBundleInstance = ResourceBundle.getBundle("OX", new Locale("eng", "ENG"));
+    private ResourceBundle resourceBundleInstance = ResourceBundle.getBundle("OX", new Locale("eng", "ENG"));//TODO z jakiegoś powodu wersja zmienia się z powrotem
 
     void setLanguageVersion(String languageCode, String countryCode) {
         resourceBundleInstance = ResourceBundle.getBundle("OX", new Locale(languageCode, countryCode));
