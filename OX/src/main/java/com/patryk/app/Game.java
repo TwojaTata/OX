@@ -4,10 +4,12 @@ import com.patryk.app.controllers.MainController;
 
 /**
  * @author Patryk Kucharski
+ *
+ * Main class to run others
  */
 public class Game {
 
-    MainController mainController = new MainController();
+    private MainController mainController = new MainController();
 
     public void run(){
         mainController.createMainLoop();

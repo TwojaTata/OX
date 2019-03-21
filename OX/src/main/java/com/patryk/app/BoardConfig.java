@@ -5,6 +5,8 @@ import java.util.Objects;
 
 /**
  * @author Patryk Kucharski
+ *
+ * represents settings for a current board
  */
 public class BoardConfig {
 
@@ -13,7 +15,7 @@ public class BoardConfig {
     public int winingConditionLength;
     public List<Player> players;
 
-    public BoardConfig(){
+    BoardConfig(){
     }
 
     BoardConfig(final int rows, final int columns, int winingCondition) {
@@ -22,7 +24,6 @@ public class BoardConfig {
         this.winingConditionLength = winingCondition;
 
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -39,5 +40,4 @@ public class BoardConfig {
     public int hashCode() {
         return Objects.hash(rows, columns, winingConditionLength, players);
     }
-
 }

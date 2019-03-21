@@ -8,11 +8,23 @@ import java.util.stream.Collectors;
 
 /**
  * @author Patryk Kucharski
+ *
+ * most of game logic is provided by this class
+ * it decides if win condition is fullfiled or
+ * a draw occured
+ *
  */
 class GameJudge {
 
+    /**
+     * @param row
+     * @param column
+     * @param board
+     * @return
+     */
+
     boolean validateIfMoveIsLegal(int row, int column, Board board) {
-        if (board.board[row][column].equals(Marker.BLANK)){
+        if (board.board[row][column].equals(Marker.BLANK)) {
             return true;
         }
         System.out.println("spot already taken! Specify different coordinates");
@@ -28,7 +40,6 @@ class GameJudge {
                 .collect(Collectors.toList())
                 .get(0);
 
-
         for (int i = column; i < board.columns; i++) {
             if (board.board[row][i].equals(currentMarker)) {
                 counter++;
@@ -37,8 +48,7 @@ class GameJudge {
                 }
             } else break;
         }
-
-        for (int i = column-1; i >= 0; i--) {
+        for (int i = column - 1; i >= 0; i--) {
             if (board.board[row][i].equals(currentMarker)) {
                 counter++;
                 if (counter == board.winingConditionLength) {
@@ -47,7 +57,6 @@ class GameJudge {
             } else break;
         }
         return false;
-
     }
 
     boolean checkIfWonVertically(int row, int column, Board board) {
@@ -67,8 +76,7 @@ class GameJudge {
                 }
             } else break;
         }
-
-        for (int i = row-1; i >= 0; i--) {
+        for (int i = row - 1; i >= 0; i--) {
             if (board.board[i][column].equals(currentMarker)) {
                 counter++;
                 if (counter == board.winingConditionLength) {
@@ -96,7 +104,6 @@ class GameJudge {
                 }
             } else break;
         }
-
         for (int i = row - 1, i1 = column - 1; i >= 0 && i1 >= 0; i--, i1--) {
             if (board.board[i][i1].equals(currentMarker)) {
                 counter++;
@@ -125,7 +132,6 @@ class GameJudge {
                 }
             } else break;
         }
-
         for (int i = row + 1, i1 = column - 1; i < board.rows && i1 >= 0; i++, i1--) {
             if (board.board[i][i1].equals(currentMarker)) {
                 counter++;
@@ -144,7 +150,7 @@ class GameJudge {
                 || checkIfWonVertically(row, column, board);
     }
 
-    public boolean checkIfTheresADraw(Board board) {
+    boolean checkIfTheresADraw(Board board) {
         int counter = 0;
 
         for (int i = 0; i < board.rows; i++) {
@@ -154,9 +160,6 @@ class GameJudge {
                 }
             }
         }
-        if (counter > 0) {
-            return false;
-        }
-        return true;
+        return counter <= 0;
     }
 }

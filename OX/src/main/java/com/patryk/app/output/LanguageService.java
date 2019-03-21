@@ -6,10 +6,12 @@ import java.util.*;
  * @author Patryk Kucharski
  * <p>
  * Service to provide diffrent language versions of application
+ * which uses .properties files to load given String
+ * deafault language is English
  */
 public class LanguageService {
 
-    private ResourceBundle resourceBundleInstance = ResourceBundle.getBundle("OX", new Locale("pl", "PL"));
+    private ResourceBundle resourceBundleInstance = ResourceBundle.getBundle("OX", new Locale("eng", "ENG"));
 
     ResourceBundle getResourceBundleInstance() {
         return resourceBundleInstance;

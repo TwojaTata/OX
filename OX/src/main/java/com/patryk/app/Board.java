@@ -3,9 +3,7 @@ package com.patryk.app;
 /**
  * @author Patryk Kucharski
  *
- *
- * Represents board, and contains methods to display, initialize and put given marker
- *
+ * Represents board, which is basic component of the game
  *
  */
 public class Board extends BoardConfig {

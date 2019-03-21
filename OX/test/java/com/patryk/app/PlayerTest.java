@@ -14,5 +14,15 @@ public class PlayerTest {
         assert player.equals(new Player("Patryk",false,Marker.CROSS)) : "should be equal";
     }
 
+    @Test
+    public void toStringTest(){
+        Player player = new Player("imię",false,Marker.CROSS);
+        assert player.toString().equals("Current Player: imię Marker: X");
+    }
 
+    @Test
+    public void getNameTest(){
+        Player player = new Player("imię",false,Marker.CROSS);
+        assert player.getName().equals("imię");
+    }
 }

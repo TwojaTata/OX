@@ -22,22 +22,22 @@ public class BoardServiceAPITest {
 
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
-        boardServiceAPI.putMarker(board, 2,2,board.players.get(0));
+        boardServiceAPI.putMarker(board, 2, 2, board.players.get(0));
         assert board.board[2][2].equals(board.players.get(0).getMarker());
     }
 
     @DataProvider(name = "defaultBoardDP")
     public static Object[][] defaultBoardDP() {
         return new Object[][]{
-                {0,0,Marker.BLANK},
-                {0,1,Marker.BLANK},
-                {0,2,Marker.BLANK},
-                {1,0,Marker.BLANK},
-                {1,1,Marker.BLANK},
-                {1,2,Marker.BLANK},
-                {2,0,Marker.BLANK},
-                {2,1,Marker.BLANK},
-                {2,2,Marker.BLANK},};
+                {0, 0, Marker.BLANK},
+                {0, 1, Marker.BLANK},
+                {0, 2, Marker.BLANK},
+                {1, 0, Marker.BLANK},
+                {1, 1, Marker.BLANK},
+                {1, 2, Marker.BLANK},
+                {2, 0, Marker.BLANK},
+                {2, 1, Marker.BLANK},
+                {2, 2, Marker.BLANK},};
     }
 
     @Test(dataProvider = "defaultBoardDP")
@@ -49,64 +49,65 @@ public class BoardServiceAPITest {
     }
 
     @Test
-    public void testConvertToInt(){
+    public void testConvertToInt() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
-        assert boardServiceAPI.ConvertToInt("2")==2;
+        assert boardServiceAPI.ConvertToInt("2") == 2;
     }
 
     @Test
-    public void testMoveValidation(){
-        BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
-        Board board = boardServiceAPI.initializeDefaultBoard();
-        boardServiceAPI.putMarker(board, 2,2,board.players.get(0));
-        assert !boardServiceAPI.validateIfMoveIsLegal(2,2,board);
-    }
-    @Test
-    public void testCheckIfWonHorizontally_ResultTrue(){
+    public void testMoveValidation() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
-        boardServiceAPI.putMarker(board,0,0,board.players.get(0));
-        boardServiceAPI.putMarker(board,0,1,board.players.get(0));
-        boardServiceAPI.putMarker(board,0,2,board.players.get(0));
-
-        assert boardServiceAPI.checkIfWonHorizontally(0,0,board);
+        boardServiceAPI.putMarker(board, 2, 2, board.players.get(0));
+        assert !boardServiceAPI.validateIfMoveIsLegal(2, 2, board);
     }
 
     @Test
-    public void testCheckIfWonHorizontally_ResultFalse(){
+    public void testCheckIfWonHorizontally_ResultTrue() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
-        boardServiceAPI.putMarker(board,0,0,board.players.get(0));
-        boardServiceAPI.putMarker(board,1,1,board.players.get(0));
-        boardServiceAPI.putMarker(board,0,2,board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 1, board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 2, board.players.get(0));
 
-        assert !boardServiceAPI.checkIfWonHorizontally(0,0,board);
+        assert boardServiceAPI.checkIfWonHorizontally(0, 0, board);
     }
 
     @Test
-    public void testCheckIfWonVertically_ResultTrue(){
+    public void testCheckIfWonHorizontally_ResultFalse() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
-        boardServiceAPI.putMarker(board,0,0,board.players.get(0));
-        boardServiceAPI.putMarker(board,1,0,board.players.get(0));
-        boardServiceAPI.putMarker(board,2,0,board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 1, 1, board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 2, board.players.get(0));
 
-        assert boardServiceAPI.checkIfWonVertically(0,0,board);
+        assert !boardServiceAPI.checkIfWonHorizontally(0, 0, board);
     }
 
     @Test
-    public void testCheckIfWonVertically_ResultFalse(){
+    public void testCheckIfWonVertically_ResultTrue() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
-        boardServiceAPI.putMarker(board,0,0,board.players.get(0));
-        boardServiceAPI.putMarker(board,1,1,board.players.get(0));
-        boardServiceAPI.putMarker(board,0,2,board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 1, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 2, 0, board.players.get(0));
 
-        assert !boardServiceAPI.checkIfWonVertically(0,0,board);
+        assert boardServiceAPI.checkIfWonVertically(0, 0, board);
     }
 
     @Test
-    public void testSwitchTurn_ResultTrue(){
+    public void testCheckIfWonVertically_ResultFalse() {
+        BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
+        Board board = boardServiceAPI.initializeDefaultBoard();
+        boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 1, 1, board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 2, board.players.get(0));
+
+        assert !boardServiceAPI.checkIfWonVertically(0, 0, board);
+    }
+
+    @Test
+    public void testSwitchTurn_ResultTrue() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
         boardServiceAPI.switchTurns(board);
@@ -114,16 +115,15 @@ public class BoardServiceAPITest {
     }
 
     @Test
-    public void testSwitchTurn_ResultFalse(){
+    public void testSwitchTurn_ResultFalse() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
         boardServiceAPI.switchTurns(board);
         assert board.players.get(1).hasTurn();
     }
 
-
     @Test
-    public void testSwitchTurnTwice_ResultTrue(){
+    public void testSwitchTurnTwice_ResultTrue() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
         boardServiceAPI.switchTurns(board);
@@ -132,7 +132,7 @@ public class BoardServiceAPITest {
     }
 
     @Test
-    public void testSwitchTurnTwice_ResultFalse(){
+    public void testSwitchTurnTwice_ResultFalse() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
         boardServiceAPI.switchTurns(board);
@@ -150,6 +150,7 @@ public class BoardServiceAPITest {
 
         assert boardServiceAPI.checkIfWonDiagonallyUpToDown(2, 2, board);
     }
+
     @Test
     public void testCheckIfWonDiagonallyUpToDown_ResultFalse() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
@@ -160,6 +161,7 @@ public class BoardServiceAPITest {
 
         assert !boardServiceAPI.checkIfWonDiagonallyUpToDown(0, 0, board);
     }
+
     @Test
     public void testCheckIfWonDiagonallyDownToUp_ResultTrue() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
@@ -170,6 +172,7 @@ public class BoardServiceAPITest {
 
         assert boardServiceAPI.checkIfWonDiagonallyDownToUp(1, 1, board);
     }
+
     @Test
     public void testCheckIfWonDiagonallyDownToUp_ResultFalse() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
@@ -182,7 +185,7 @@ public class BoardServiceAPITest {
     }
 
     @Test
-    public void testCheckWonHorizontally_ResultTrue(){
+    public void testCheckWonHorizontally_ResultTrue() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
         boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
@@ -193,7 +196,7 @@ public class BoardServiceAPITest {
     }
 
     @Test
-    public void testCheckWonVertically_ResultTrue(){
+    public void testCheckWonVertically_ResultTrue() {
         BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
         Board board = boardServiceAPI.initializeDefaultBoard();
         boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
@@ -201,5 +204,53 @@ public class BoardServiceAPITest {
         boardServiceAPI.putMarker(board, 2, 0, board.players.get(0));
 
         assert boardServiceAPI.checkIfWonVertically(0, 0, board);
+    }
+
+    @Test
+    public void testIfTheresADraw_ResultTrue() {
+
+        BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
+        Board board = boardServiceAPI.initializeDefaultBoard();
+        boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 1, 1, board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 2, board.players.get(0));
+        boardServiceAPI.putMarker(board, 2, 1, board.players.get(0));
+
+        boardServiceAPI.putMarker(board, 0, 1, board.players.get(1));
+        boardServiceAPI.putMarker(board, 1, 0, board.players.get(1));
+        boardServiceAPI.putMarker(board, 1, 2, board.players.get(1));
+        boardServiceAPI.putMarker(board, 2, 0, board.players.get(1));
+        boardServiceAPI.putMarker(board, 2, 2, board.players.get(1));
+
+        assert boardServiceAPI.checkIfTheresADraw(board);
+    }
+
+    @Test
+    public void testIfTheresADrawGameJudge_ResultTrue() {
+
+        GameJudge gameJudge = new GameJudge();
+        BoardService boardService = new BoardService();
+        Board board = boardService.initializeDefaultBoard();
+        boardService.putMarker(board, 0, 0, board.players.get(0));
+        boardService.putMarker(board, 1, 1, board.players.get(0));
+        boardService.putMarker(board, 0, 2, board.players.get(0));
+        boardService.putMarker(board, 2, 1, board.players.get(0));
+
+        boardService.putMarker(board, 0, 1, board.players.get(1));
+        boardService.putMarker(board, 1, 0, board.players.get(1));
+        boardService.putMarker(board, 1, 2, board.players.get(1));
+        boardService.putMarker(board, 2, 0, board.players.get(1));
+        boardService.putMarker(board, 2, 2, board.players.get(1));
+
+        assert gameJudge.checkIfTheresADraw(board);
+    }
+
+    @Test
+    public void getCurrentPlayerTest(){
+
+        BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
+        Board board = boardServiceAPI.initializeDefaultBoard();
+        Player player = new Player("PlayerO",true,Marker.CIRCLE);
+        assert boardServiceAPI.getCurrentPLayer(board).equals(player);
     }
 }

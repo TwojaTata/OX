@@ -54,14 +54,6 @@ public class BoardServiceTest {
                 {1,0,Marker.BLANK},};
     }
 
-//    @Test(dataProvider = "blankBoardDP")
-//    public void fillBoardWithBlanksTest(int rows, int columns, Marker markerBlank){
-//        BoardService boardService = new BoardService();
-//        Board board = new Board(10,10,5);
-//        boardService.fillBoardWithBlanks();
-//        assert board.board[rows][columns].equals(markerBlank) : "all field should be blanks";
-//    }
-
     @DataProvider(name = "putMarkerDP")
     public static Object[][] putMarkerDP() {
         return new Object[][]{
@@ -72,14 +64,6 @@ public class BoardServiceTest {
                 {5,1}};
     }
 
-//    @Test(dataProvider = "putMarkerDP")
-//    public void putMarkerOnAGivenSlot(int row, int column){
-//        BoardService boardService = new BoardService();
-//        Board board = new Board(10,10,5);
-//        boardService.setBoardConfigAndInitializeBoard();
-//        boardService.putMarker(row,column,Marker.CIRCLE);
-//        assert board.board[row][column].equals(Marker.CIRCLE): "should be circle";
-//    }
 
 
 

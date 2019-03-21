@@ -4,6 +4,8 @@ import java.util.Objects;
 
 /**
  * @author Patryk Kucharski
+ *
+ * player representation
  */
 public class Player {
 

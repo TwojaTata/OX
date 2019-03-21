@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 /**
  * @author Patryk Kucharski
+ *
+ * Central class of game, displays menu and guides user
+ * accordingly to his choice
  */
 public class MainController {
 
@@ -19,10 +22,21 @@ public class MainController {
     private String language;
     private boolean isLanguageValid = false;
 
+    /**
+     * main loop to steer the game
+     * "exit" let's user to quit game
+     *
+     * default instance of board is created in the very beginning and
+     * the same board is being changed or reset depending on users choice
+     *
+     * case 1: Play the game
+     * case 2: Change game settings
+     * case 3: Set language
+      */
+
     public void createMainLoop() {
 
         String userAnswer;
-
         outputAPI.printMessageToUserNextLine("welcomeToTheGame");
         do {
             outputAPI.printMenu();

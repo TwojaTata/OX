@@ -10,10 +10,9 @@ import java.util.Scanner;
 /**
  * @author Patryk Kucharski
  * <p>
- * Service to get dimensions and wining condition from user
+ * Service to get game config from user
  */
 public class SettingsService {
-
 
     private OutputAPI outputAPI = new OutputAPI();
     private InputAPI inputApi = new InputAPI();
@@ -24,11 +23,6 @@ public class SettingsService {
     public SettingsService() {
     }
 
-    /**
-     * @param rows
-     * @param columns
-     * @return biggerDimension
-     */
     private int getBiggerDimension(int rows, int columns) {
         if (rows > columns) {
             return rows;
@@ -36,9 +30,6 @@ public class SettingsService {
         return columns;
     }
 
-    /**
-     * @param dimensionName
-     */
     public int getDimensionFromUser(String dimensionName) {
         String userAnswer;
         do {
@@ -53,10 +44,6 @@ public class SettingsService {
         }
         return Integer.valueOf(userAnswer);
     }
-
-    /**
-     *
-     */
 
     public int getWiningConditionLengthFromUser() {
         String userAnswer;

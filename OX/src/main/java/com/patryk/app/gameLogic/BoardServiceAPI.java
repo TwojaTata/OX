@@ -5,19 +5,21 @@ import com.patryk.app.Player;
 
 /**
  * @author Patryk Kucharski
+ *
+ * API class which is a
+ * simple middle man between
  */
 public class BoardServiceAPI {
 
     private BoardService boardService = new BoardService();
     private GameJudge gameJudge = new GameJudge();
 
-
     public void putMarker(Board board, int rows, int columns, Player currentPlayer) {
         boardService.putMarker(board, rows, columns, currentPlayer);
     }
 
     public Board initializeBoardWithGivenConfig() {
-        return boardService.setBoardConfigAndInitializeBoard(); //TODO tam jest zadyma trzeba to przepisać na API
+        return boardService.setBoardConfigAndInitializeBoard();
     }
 
     public Board initializeDefaultBoard() {
@@ -32,11 +34,11 @@ public class BoardServiceAPI {
         return boardService.convertCoordinateToInt(coordinate);
     }
 
-    public boolean checkIfWonHorizontally(int row, int column, Board board) {
+    boolean checkIfWonHorizontally(int row, int column, Board board) {
         return gameJudge.checkIfWonHorizontally(row, column, board);
     }
 
-    public boolean checkIfWonVertically(int row, int column, Board board) {
+    boolean checkIfWonVertically(int row, int column, Board board) {
         return gameJudge.checkIfWonVertically(row, column, board);
     }
 
@@ -44,11 +46,11 @@ public class BoardServiceAPI {
         boardService.switchTurns(board);
     }
 
-    public boolean checkIfWonDiagonallyUpToDown(int row, int column, Board board) {
+    boolean checkIfWonDiagonallyUpToDown(int row, int column, Board board) {
         return gameJudge.checkIfWonDiagonallyUpToDown(row, column, board);
     }
 
-    public boolean checkIfWonDiagonallyDownToUp(int row, int column, Board board) {
+    boolean checkIfWonDiagonallyDownToUp(int row, int column, Board board) {
         return gameJudge.checkIfWonDiagonallyDownToUp(row, column, board);
     }
 

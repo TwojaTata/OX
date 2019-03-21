@@ -1,27 +1,23 @@
 package com.patryk.app.output;
 
 import com.patryk.app.Board;
-import com.patryk.app.Player;
-import java.util.List;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
  * @author Patryk Kucharski
+ *
+ * API to provide all the output methods
+ * most of which dispaly given message
  */
 public class OutputAPI {
-
 
     private Printer printer;
     private Scanner scanner;
 
-
     public OutputAPI() {
         this.printer = new Printer();
         this.scanner = new Scanner(System.in);
-
     }
-
 
     public void printMessageToUserNextLine(String key) {
         printer.printMessageToUserNextLine(key);
@@ -48,17 +44,10 @@ public class OutputAPI {
         printer.printMessageToUserNextLine("insertColumnNumber");
         return scanner.nextLine();
     }
-    public void setLanguage(String languageCode, String countryCode){
+
+    public void setLanguage(String languageCode, String countryCode) {
         printer.setLanguage(languageCode, countryCode);
     }
-
-//    public void setLanguageVersion(String languageCode, String countryCode) {
-//        languageService.setLanguageVersion(languageCode, countryCode);
-//    }
-
-//    public ResourceBundle getResourceBundleInstance() {
-//        return languageService.getResourceBundleInstance();
-//    }
 
     public void printMessage(String message) {
         printer.printMessage(message);

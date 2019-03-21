@@ -3,7 +3,6 @@ package com.patryk.app.gameLogic;
 import com.patryk.app.Board;
 import com.patryk.app.Marker;
 import com.patryk.app.Player;
-import com.patryk.app.output.OutputAPI;
 import com.patryk.app.output.SettingsService;
 
 import java.util.ArrayList;
@@ -14,14 +13,18 @@ import java.util.stream.Collectors;
  * <p>
  * Service to manage board.
  * Contains methods to initialize blank board,
+ * create board accordingly to user input,
  * put marker on board and add player to the borad.
  */
 public class BoardService {
 
+    private Board board;
+    private SettingsService settingsService = new SettingsService();
 
-    Board board;
-    OutputAPI outputAPI = new OutputAPI();//TODO do output API
-    SettingsService settingsService = new SettingsService();
+    /**
+     * @return customized board accordingly to user input,
+     * such board is ready to play
+     */
 
     Board setBoardConfigAndInitializeBoard() {
         board = new Board(settingsService.getDimensionFromUser("rows"),
@@ -32,8 +35,13 @@ public class BoardService {
         return board;
     }
 
-    Board initializeDefaultBoard(){
-        board = new Board(3,3,3);
+    /**
+     * @return default board, with default players and settings
+     * such board is ready to play
+     */
+
+    Board initializeDefaultBoard() {
+        board = new Board(3, 3, 3);
         board.players = new ArrayList<>(2);
         board.players.add(new Player("PlayerO", true, Marker.CIRCLE));
         board.players.add(new Player("PlayerX", false, Marker.CROSS));
@@ -41,13 +49,9 @@ public class BoardService {
         return board;
     }
 
-    public void displayPlayersInfo(Board board) {
-        System.out.println(board.players.toString());
-    }//TODO do output
-
     /**
      * Sets up a board filled with Marker.BLANK enum,
-     * such board is ready to play
+     * which is initial state of board
      */
 
     private void fillBoardWithBlanks(Board board) {
@@ -59,14 +63,14 @@ public class BoardService {
     }
 
     /**
-     * @param row
-     * @param column
-     * @param currentPlayer
-     *
-     * Puts given marker in specified position on board (row, column)
+     * @param row           coordinate
+     * @param column        coordinate
+     * @param currentPlayer player who currently has turn
+     *                      <p>
+     *                      Puts given marker in specified position on board
      */
 
-    void putMarker(Board board, int row, int column, Player currentPlayer) {//TODO walidacja tutaj???? raczej nie, DO innej klasy -> GameService
+    void putMarker(Board board, int row, int column, Player currentPlayer) {
         board.board[row][column] = currentPlayer.getMarker();
     }
 
@@ -74,14 +78,14 @@ public class BoardService {
      * displays current state of a board;
      */
 
-    void displayBoard(Board board) { //TODO do outputAPI
+    void displayBoard(Board board) {
 
         System.out.println();
         System.out.print("   ");
         for (int i = 0; i < board.columns; i++) {
-            if (i+1>9){
-            System.out.print("|" + (i + 1) + " ");
-        } else {
+            if (i + 1 > 9) {
+                System.out.print("|" + (i + 1) + " ");
+            } else {
                 System.out.print("|" + (i + 1) + "  ");
             }
         }
@@ -92,9 +96,9 @@ public class BoardService {
         }
         for (int i = 0; i < board.rows; i++) {
             System.out.println();
-            if (i+1>9) {
+            if (i + 1 > 9) {
                 System.out.print((i + 1) + " ");
-            }else {
+            } else {
                 System.out.print((i + 1) + "  ");
             }
             for (int j = 0; j < board.columns; j++) {
@@ -110,17 +114,17 @@ public class BoardService {
         System.out.println();
     }
 
-    int convertCoordinateToInt (String coordinate){
+    int convertCoordinateToInt(String coordinate) {
         return Integer.valueOf(coordinate);
     }
 
-    void switchTurns(Board board){
-        for (Player player:board.players
-             ) {
-            if (player.hasTurn()){
+
+    void switchTurns(Board board) {
+        for (Player player : board.players
+        ) {
+            if (player.hasTurn()) {
                 player.setTurn(false);
-            }
-            else {
+            } else {
                 player.setTurn(true);
             }
         }

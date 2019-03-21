@@ -22,6 +22,13 @@ class TurnController {
     private String userAnswerRow;
     private String userAnswerColumn;
 
+    /**
+     *
+     * @param board current state of board, which was created in
+     *              MainController class
+     *
+     * Does a round until the winner is found or game ends in a draw
+     */
 
     void doARound(Board board) {
         resetSettings();
@@ -29,6 +36,14 @@ class TurnController {
             doATurn(board);
         }
     }
+
+    /**
+     *
+     * @param board current state of board
+     *
+     * Turn cycle which loops until the winner is found or game
+     * ends in a draw
+     */
 
     private void doATurn(Board board) {
         Player currentPlayer = boardServiceAPI.getCurrentPLayer(board);
@@ -56,6 +71,13 @@ class TurnController {
         boardServiceAPI.switchTurns(board);
     }
 
+    /**
+     *  helping method that checks if given move is legal and
+     *  asks user for correct input until method receives one
+     *
+     * @param board current state of board
+     */
+
     private void validateMove(Board board) {
         boolean isMoveValid;
         do {
@@ -64,6 +86,12 @@ class TurnController {
             isMoveValid = boardServiceAPI.validateIfMoveIsLegal(row - 1, column - 1, board);
         } while (!isMoveValid);
     }
+
+    /**
+     *  helping methods to validate
+     *  coordinates provided by user
+     *
+     */
 
     private void validateRow(Board board) {
         do {

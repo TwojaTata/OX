@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 /**
  * @author Patryk Kucharski
+ *
+ * Helds basic display methods
+ *
  */
 class Printer {
 
@@ -40,15 +43,6 @@ class Printer {
                 .collect(Collectors.toList())
                 .get(0).toString());
     }
-
-//    void askForAColumn() {
-//        System.out.println("insert column number");
-//    }
-//
-//
-//    void askForARow() {
-//        System.out.println("insert row number");
-//    }
 
     void printLanguageMenu() {
 

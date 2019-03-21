@@ -3,14 +3,15 @@ package com.patryk.app.input;
 import com.patryk.app.Board;
 import com.patryk.app.output.OutputAPI;
 
-import java.util.Scanner;
-
 /**
  * @author Patryk Kucharski
+ *
+ * class to check for user input and prevent
+ * any exceptions or interruptions to occur at runtime
  */
 public class InputValidationService {
 
-    OutputAPI outputAPI = new OutputAPI();
+    private OutputAPI outputAPI = new OutputAPI();
 
     boolean validateDimension(String dimension) {
         int dimensionInt;
@@ -25,7 +26,6 @@ public class InputValidationService {
             return false;
         }
         if (dimensionInt < 3) {
-
 
             outputAPI.printMessageToUserNextLine("dimensionTooSmall");
             outputAPI.printMessageToUserNextLine("insertProperNumber");
