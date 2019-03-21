@@ -16,7 +16,6 @@ class TurnController {
     private OutputAPI outputAPI = new OutputAPI();
     private boolean doWeHaveAWinner = false;
     private boolean doWeHaveADraw = false;
-    private boolean isMoveValid = false;
     private boolean isRowValid = false;
     private boolean isColumnValid = false;
     private int row, column;
@@ -39,14 +38,17 @@ class TurnController {
         boardServiceAPI.putMarker(board, row - 1, column - 1, currentPlayer);
         if (boardServiceAPI.checkIfCurrentPlayerWon(row - 1, column - 1, board)) {
             boardServiceAPI.displayBoard(board);
-            outputAPI.printMessage("Player " + currentPlayer.getName() + " won! GG");
+            outputAPI.printMessageToUserInLine("player");
+            outputAPI.printMessage(currentPlayer.getName());
+            outputAPI.printMessageToUserInLine("won");
+            outputAPI.printMessage("");
             doWeHaveAWinner = true;
             doWeHaveADraw = true;
         }
         if (!doWeHaveAWinner) {
             if (boardServiceAPI.checkIfTheresADraw(board)) {
                 boardServiceAPI.displayBoard(board);
-                outputAPI.printMessage("It's a draw! GG");
+                outputAPI.printMessageToUserNextLine("itsADraw");
                 doWeHaveADraw = true;
                 doWeHaveAWinner = true;
             }
@@ -55,6 +57,7 @@ class TurnController {
     }
 
     private void validateMove(Board board) {
+        boolean isMoveValid;
         do {
             validateRow(board);
             validateColumn(board);

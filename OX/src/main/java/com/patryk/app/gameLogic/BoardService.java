@@ -21,13 +21,13 @@ public class BoardService {
 
     Board board;
     OutputAPI outputAPI = new OutputAPI();//TODO do output API
-
+    SettingsService settingsService = new SettingsService();
 
     Board setBoardConfigAndInitializeBoard() {
-        board = new Board(outputAPI.getDimensionFromUser("rows"),
-                outputAPI.getDimensionFromUser("columns"),
-                outputAPI.getWiningConditionLengthFromUser());
-        board.players = outputAPI.getPlayersInfoFromUser();
+        board = new Board(settingsService.getDimensionFromUser("rows"),
+                settingsService.getDimensionFromUser("columns"),
+                settingsService.getWiningConditionLengthFromUser());
+        board.players = settingsService.getPlayersInfoFromUser();
         fillBoardWithBlanks(board);
         return board;
     }

@@ -2,11 +2,16 @@ package com.patryk.app.input;
 
 import com.patryk.app.Board;
 
+import java.util.Scanner;
+
 /**
  * @author Patryk Kucharski
  */
 public class InputAPI {
 
+    public String getStringFromUser(){
+        return new Scanner(System.in).nextLine();
+    }
     private InputValidationService inputValidationService = new InputValidationService();
 
     public boolean validateDimension(String dimension) {

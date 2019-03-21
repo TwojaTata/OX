@@ -16,33 +16,50 @@ public class MainController {
     private Scanner scanner = new Scanner(System.in);
     private TurnController turnController = new TurnController();
     private Board board = boardServiceAPI.initializeDefaultBoard();
+    private String language;
+    private boolean isLanguageValid = false;
 
-    public void createMainLoop(){
+    public void createMainLoop() {
 
         String userAnswer;
+
+        outputAPI.printMessageToUserNextLine("welcomeToTheGame");
         do {
             outputAPI.printMenu();
             userAnswer = scanner.nextLine();
-            switch (userAnswer){
-                case "1":{
+            switch (userAnswer) {
+                case "1": {
                     turnController.doARound(board);
                     board = boardServiceAPI.initializeDefaultBoard();
                     break;
                 }
-                case "2":{
+                case "2": {
                     board = boardServiceAPI.initializeDefaultBoard();
-                    board = boardServiceAPI.initializeBoardOrResetBoard();//tODO nazwa metody do zmiany
+                    board = boardServiceAPI.initializeBoardWithGivenConfig();
                     break;
                 }
-                case "3":{
-                    outputAPI.setLanguage();
+                case "3": {
+                    do {
+                        outputAPI.printLanguageMenu();
+                        language = scanner.nextLine();
+                        if (language.toLowerCase().equals("pl") || language.toLowerCase().equals("eng")) {
+                            outputAPI.setLanguage(language.toLowerCase(), language);
+                            isLanguageValid = true;
+                        }
+                    } while (!isLanguageValid);
                     break;
                 }
-                default:{
-                    outputAPI.printMessage("no such option");
-                    break;
+                default: {
+                    if (userAnswer.toLowerCase().equals("exit")) {
+                        outputAPI.printMessage("Thanks for playing!");
+                        break;
+                    } else {
+                        outputAPI.printMessageToUserNextLine("noSuchOption");
+                        break;
+                    }
                 }
             }
-        }while (!userAnswer.toLowerCase().equals("exit"));
+        } while (!userAnswer.toLowerCase().equals("exit"));
     }
 }
+

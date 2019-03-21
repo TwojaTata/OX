@@ -8,20 +8,29 @@ import java.util.stream.Collectors;
 /**
  * @author Patryk Kucharski
  */
-public class Printer {
+class Printer {
+
+    private LanguageService languageService = new LanguageService();
+
+    void printMessageToUserNextLine(String key) {
+        System.out.println(languageService.getResourceBundleInstance().getString(key));
+    }
+
+    void printMessageToUserInLine(String key) {
+        System.out.print(languageService.getResourceBundleInstance().getString(key));
+    }
 
     void printMessage(String message){
         System.out.println(message);
     }
 
     void printMenu() {
-        System.out.println("Welcome to TicTacToe");
-        System.out.println("Choose number of following options");
-        System.out.println("1. Play");
-        System.out.println("2. Configure settings");
-        System.out.println("3. Configure players");
-        System.out.println("4. Exit");
 
+        printMessageToUserNextLine("chooseOption");
+        printMessageToUserNextLine("option1Play");
+        printMessageToUserNextLine("option2ConfigureSettings");
+        printMessageToUserNextLine("option3SetLanguage");
+        printMessageToUserNextLine("exitToCloseTheGame");
     }
 
     void printCurrentPlayer(Board board){
@@ -30,15 +39,26 @@ public class Printer {
                 .filter(Player::hasTurn)
                 .collect(Collectors.toList())
                 .get(0).toString());
-
     }
 
-    void askForAColumn() {
-        System.out.println("insert column number");
+//    void askForAColumn() {
+//        System.out.println("insert column number");
+//    }
+//
+//
+//    void askForARow() {
+//        System.out.println("insert row number");
+//    }
+
+    void printLanguageMenu() {
+
+        printMessageToUserNextLine("chooseLanguage");
+        printMessageToUserNextLine("english");
+        printMessageToUserNextLine("polish");
+        printMessageToUserNextLine("typeExitToQuitSettings");
     }
 
-
-    void askForARow() {
-        System.out.println("insert row number");
+    void setLanguage(String languageCode, String countryCode) {
+        languageService.setLanguageVersion(languageCode,countryCode);
     }
 }

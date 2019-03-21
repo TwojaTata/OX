@@ -14,12 +14,14 @@ import java.util.Scanner;
  */
 public class SettingsService {
 
+
+    private OutputAPI outputAPI = new OutputAPI();
     private InputAPI inputApi = new InputAPI();
     private Scanner scanner = new Scanner(System.in);
     private int rows;
     private int columns;
 
-    SettingsService() {
+    public SettingsService() {
     }
 
     /**
@@ -37,16 +39,16 @@ public class SettingsService {
     /**
      * @param dimensionName
      */
-    int getDimensionFromUser(String dimensionName) {
+    public int getDimensionFromUser(String dimensionName) {
         String userAnswer;
-
         do {
-            System.out.println("insert number of " + dimensionName);
+            outputAPI.printMessageToUserInLine("insertNumberOfDimension");
+            outputAPI.printMessage(dimensionName);
             userAnswer = scanner.nextLine();
         } while (!inputApi.validateDimension(userAnswer));
-        if (dimensionName.equals("rows")){
+        if (dimensionName.equals("rows")) {
             rows = Integer.valueOf(userAnswer);
-        }else {
+        } else {
             columns = Integer.valueOf(userAnswer);
         }
         return Integer.valueOf(userAnswer);
@@ -56,34 +58,34 @@ public class SettingsService {
      *
      */
 
-    int getWiningConditionLengthFromUser() {
+    public int getWiningConditionLengthFromUser() {
         String userAnswer;
-
         do {
-            System.out.println("insert number of wining marks in a row");//TODO wymyślić dobre pytanie
+            outputAPI.printMessageToUserNextLine("insertWinningCondition");
             userAnswer = scanner.nextLine();
         } while (!inputApi.validateWiningCondition(userAnswer, getBiggerDimension(rows, columns)));
         return Integer.valueOf(userAnswer);
     }
 
-    List<Player> getPlayersInfoFromUser() {
+    public List<Player> getPlayersInfoFromUser() {
         String userAnswerPlayerOneName;
         String userAnswerPlayerTwoName;
         String markerPlayerOne;
         List<Player> players = new ArrayList<>(2);
 
         do {
-            System.out.println("Insert name of player to begin");
+            outputAPI.printMessageToUserNextLine("insertNameOf1Player");
             userAnswerPlayerOneName = scanner.nextLine();
         } while (!inputApi.validateName(userAnswerPlayerOneName));
 
         do {
-            System.out.println("Insert marker of " + userAnswerPlayerOneName + " (O,X)");
+            outputAPI.printMessageToUserNextLine("insertMarker");
+            outputAPI.printMessage(userAnswerPlayerOneName + " (O,X)");
             markerPlayerOne = scanner.nextLine();
         } while (!inputApi.validateMarker(markerPlayerOne));
 
         do {
-            System.out.println("Insert name of second player");
+            outputAPI.printMessageToUserNextLine("insertNameOf2Player");
             userAnswerPlayerTwoName = scanner.nextLine();
         } while (!inputApi.validateName(userAnswerPlayerTwoName));
 
@@ -95,9 +97,7 @@ public class SettingsService {
     private List<Marker> getMarkerBasedOnUserAnswer(String markerPlayerOne) {
 
         List<Marker> markers = new ArrayList<>(2);
-        if (markerPlayerOne == null) {
-            return null;//TODO ????? co z  tym nullem
-        }
+
         if (markerPlayerOne.toLowerCase().equals("o") || markerPlayerOne.toLowerCase().equals("0") || markerPlayerOne.toLowerCase().equals("circle")) {
             markers.add(Marker.CIRCLE);
             markers.add(Marker.CROSS);

@@ -16,7 +16,7 @@ public class BoardServiceAPI {
         boardService.putMarker(board, rows, columns, currentPlayer);
     }
 
-    public Board initializeBoardOrResetBoard() {
+    public Board initializeBoardWithGivenConfig() {
         return boardService.setBoardConfigAndInitializeBoard(); //TODO tam jest zadyma trzeba to przepisać na API
     }
 
