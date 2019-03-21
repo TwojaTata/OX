@@ -5,6 +5,7 @@ TicTacToe game between 2 players on chosen board size and winning condition.
 ##Prerequisites
 
 Latest JRE
+maven version 3.5.3
 
 ##Running
 

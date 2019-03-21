@@ -1,0 +1,17 @@
+com/patryk/app/BoardConfig.class
+com/patryk/app/input/InputAPI.class
+com/patryk/app/Starter.class
+com/patryk/app/gameLogic/BoardServiceAPI.class
+com/patryk/app/gameLogic/GameJudge.class
+com/patryk/app/gameLogic/BoardService.class
+com/patryk/app/controllers/MainController.class
+com/patryk/app/output/Printer.class
+com/patryk/app/Marker.class
+com/patryk/app/output/LanguageService.class
+com/patryk/app/output/OutputAPI.class
+com/patryk/app/input/InputValidationService.class
+com/patryk/app/output/SettingsService.class
+com/patryk/app/controllers/TurnController.class
+com/patryk/app/Game.class
+com/patryk/app/Board.class
+com/patryk/app/Player.class

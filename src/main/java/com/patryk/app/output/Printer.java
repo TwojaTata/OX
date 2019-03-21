@@ -28,7 +28,6 @@ class Printer {
     }
 
     void printMenu() {
-
         printMessageToUserNextLine("chooseOption");
         printMessageToUserNextLine("option1Play");
         printMessageToUserNextLine("option2ConfigureSettings");

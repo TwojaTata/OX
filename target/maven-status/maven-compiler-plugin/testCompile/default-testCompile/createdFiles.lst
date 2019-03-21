@@ -1,0 +1,9 @@
+com/patryk/app/PlayerTest.class
+com/patryk/app/BoardConfigTest.class
+com/patryk/app/gameLogic/BoardServiceAPITest.class
+com/patryk/app/MarkerTest.class
+com/patryk/app/BoardServiceTest.class
+com/patryk/app/SettingsServiceTest.class
+com/patryk/app/LanguageServiceTest.class
+com/patryk/app/output/LanguageServiceTest.class
+com/patryk/app/TestInputAPI.class
