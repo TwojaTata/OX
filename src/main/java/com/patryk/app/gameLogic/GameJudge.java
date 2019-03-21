@@ -8,11 +8,10 @@ import java.util.stream.Collectors;
 
 /**
  * @author Patryk Kucharski
- *
+ * <p>
  * most of game logic is provided by this class
  * it decides if win condition is fullfiled or
  * a draw occured
- *
  */
 class GameJudge {
 
@@ -34,11 +33,7 @@ class GameJudge {
     boolean checkIfWonHorizontally(int row, int column, Board board) {
 
         int counter = 0;
-        Marker currentMarker = board.players.stream()
-                .filter(Player::hasTurn)
-                .map(Player::getMarker)
-                .collect(Collectors.toList())
-                .get(0);
+        Marker currentMarker = getCurrentMarker(board);
 
         for (int i = column; i < board.columns; i++) {
             if (board.board[row][i].equals(currentMarker)) {
@@ -62,11 +57,7 @@ class GameJudge {
     boolean checkIfWonVertically(int row, int column, Board board) {
 
         int counter = 0;
-        Marker currentMarker = board.players.stream()
-                .filter(Player::hasTurn)
-                .map(Player::getMarker)
-                .collect(Collectors.toList())
-                .get(0);
+        Marker currentMarker = getCurrentMarker(board);
 
         for (int i = row; i < board.rows; i++) {
             if (board.board[i][column].equals(currentMarker)) {
@@ -90,11 +81,7 @@ class GameJudge {
     boolean checkIfWonDiagonallyUpToDown(int row, int column, Board board) {
 
         int counter = 0;
-        Marker currentMarker = board.players.stream()
-                .filter(Player::hasTurn)
-                .map(Player::getMarker)
-                .collect(Collectors.toList())
-                .get(0);
+        Marker currentMarker = getCurrentMarker(board);
 
         for (int i = row, i1 = column; i < board.rows && i1 < board.columns; i++, i1++) {
             if (board.board[i][i1].equals(currentMarker)) {
@@ -118,11 +105,7 @@ class GameJudge {
     boolean checkIfWonDiagonallyDownToUp(int row, int column, Board board) {
 
         int counter = 0;
-        Marker currentMarker = board.players.stream()
-                .filter(Player::hasTurn)
-                .map(Player::getMarker)
-                .collect(Collectors.toList())
-                .get(0);
+        Marker currentMarker = getCurrentMarker(board);
 
         for (int i = row, i1 = column; i >= 0 && i1 < board.columns; i--, i1++) {
             if (board.board[i][i1].equals(currentMarker)) {
@@ -161,5 +144,13 @@ class GameJudge {
             }
         }
         return counter <= 0;
+    }
+
+    private Marker getCurrentMarker(Board board) {
+        return board.players.stream()
+                .filter(Player::hasTurn)
+                .map(Player::getMarker)
+                .collect(Collectors.toList())
+                .get(0);
     }
 }
