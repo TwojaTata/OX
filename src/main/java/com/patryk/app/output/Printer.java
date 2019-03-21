@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * @author Patryk Kucharski
  *
- * Helds basic display methods
+ * Holds basic display methods
  *
  */
 class Printer {

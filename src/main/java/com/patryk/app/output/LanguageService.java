@@ -13,11 +13,11 @@ public class LanguageService {
 
     private ResourceBundle resourceBundleInstance = ResourceBundle.getBundle("OX", new Locale("eng", "ENG"));
 
-    ResourceBundle getResourceBundleInstance() {
-        return resourceBundleInstance;
-    }
-
     void setLanguageVersion(String languageCode, String countryCode) {
         resourceBundleInstance = ResourceBundle.getBundle("OX", new Locale(languageCode, countryCode));
+    }
+
+    ResourceBundle getResourceBundleInstance() {
+        return resourceBundleInstance;
     }
 }
