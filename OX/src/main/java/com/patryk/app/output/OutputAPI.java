@@ -39,11 +39,18 @@ public class OutputAPI {
     public void printCurrentPlayer(Board board){
         printer.printCurrentPlayer(board);
     }
+
     public String askForRow() {
+        printer.askForARow();
         return scanner.nextLine();
     }//TODO to nie tutaj? nie ta klasa? nie ta odpowiedzialność
 
     public String askForColumn() {
+        printer.askForAColumn();
         return scanner.nextLine();
+    }
+
+    public void setLanguage() {
+        //TODO IMPLEMENT
     }
 }

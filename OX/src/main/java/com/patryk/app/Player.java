@@ -46,11 +46,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", hasTurn=" + hasTurn +
-                ", marker=" + marker +
-                '}';
+        return "Current Player: " + name + " Marker: " + marker.valueToDisplay;
     }
 
     public String getName() {

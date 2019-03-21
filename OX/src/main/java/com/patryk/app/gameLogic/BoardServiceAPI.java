@@ -16,8 +16,8 @@ public class BoardServiceAPI {
         boardService.putMarker(board, rows, columns, currentPlayer);
     }
 
-    public void initializeBoardOrResetBoard() {
-        boardService.setBoardConfigAndInitializeBoard(); //TODO tam jest zadyma trzeba to przepisać na API
+    public Board initializeBoardOrResetBoard() {
+        return boardService.setBoardConfigAndInitializeBoard(); //TODO tam jest zadyma trzeba to przepisać na API
     }
 
     public Board initializeDefaultBoard() {
@@ -28,33 +28,40 @@ public class BoardServiceAPI {
         return gameJudge.validateIfMoveIsLegal(row, column, board);
     }
 
-    public int ConvertToInt(String coordinate){
+    public int ConvertToInt(String coordinate) {
         return boardService.convertCoordinateToInt(coordinate);
     }
 
-    public boolean checkIfWonHorizontally(int row, int column, Board board){
+    public boolean checkIfWonHorizontally(int row, int column, Board board) {
         return gameJudge.checkIfWonHorizontally(row, column, board);
     }
 
-    public boolean checkIfWonVertically(int row, int column, Board board){
+    public boolean checkIfWonVertically(int row, int column, Board board) {
         return gameJudge.checkIfWonVertically(row, column, board);
     }
 
-    public void switchTurns(Board board){
+    public void switchTurns(Board board) {
         boardService.switchTurns(board);
     }
 
-    public boolean checkIfWonDiagonallyUpToDown(int row, int column, Board board){
+    public boolean checkIfWonDiagonallyUpToDown(int row, int column, Board board) {
         return gameJudge.checkIfWonDiagonallyUpToDown(row, column, board);
     }
+
     public boolean checkIfWonDiagonallyDownToUp(int row, int column, Board board) {
-        return gameJudge.checkIfWonDiagonallyDownToUp(row,column,board);
+        return gameJudge.checkIfWonDiagonallyDownToUp(row, column, board);
     }
-    public void displayBoard(Board board){
+
+    public void displayBoard(Board board) {
         boardService.displayBoard(board);
     }
-    public boolean checkIfCurrentPlayerWon(int row, int column, Board board){
-        return gameJudge.checkIfCurrentPlayerWon(row,column,board);
+
+    public boolean checkIfCurrentPlayerWon(int row, int column, Board board) {
+        return gameJudge.checkIfCurrentPlayerWon(row, column, board);
+    }
+
+    public boolean checkIfTheresADraw(Board board){
+        return gameJudge.checkIfTheresADraw(board);
     }
 
     public Player getCurrentPLayer(Board board) {

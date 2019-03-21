@@ -180,4 +180,26 @@ public class BoardServiceAPITest {
 
         assert !boardServiceAPI.checkIfWonDiagonallyDownToUp(0, 2, board);
     }
+
+    @Test
+    public void testCheckWonHorizontally_ResultTrue(){
+        BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
+        Board board = boardServiceAPI.initializeDefaultBoard();
+        boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 1, board.players.get(0));
+        boardServiceAPI.putMarker(board, 0, 2, board.players.get(0));
+
+        assert boardServiceAPI.checkIfWonHorizontally(0, 0, board);
+    }
+
+    @Test
+    public void testCheckWonVertically_ResultTrue(){
+        BoardServiceAPI boardServiceAPI = new BoardServiceAPI();
+        Board board = boardServiceAPI.initializeDefaultBoard();
+        boardServiceAPI.putMarker(board, 0, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 1, 0, board.players.get(0));
+        boardServiceAPI.putMarker(board, 2, 0, board.players.get(0));
+
+        assert boardServiceAPI.checkIfWonVertically(0, 0, board);
+    }
 }

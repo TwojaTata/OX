@@ -12,8 +12,11 @@ import java.util.stream.Collectors;
 class GameJudge {
 
     boolean validateIfMoveIsLegal(int row, int column, Board board) {
-
-        return board.board[row][column].equals(Marker.BLANK);
+        if (board.board[row][column].equals(Marker.BLANK)){
+            return true;
+        }
+        System.out.println("spot already taken! Specify different coordinates");
+        return false;
     }
 
     boolean checkIfWonHorizontally(int row, int column, Board board) {
@@ -35,7 +38,7 @@ class GameJudge {
             } else break;
         }
 
-        for (int i = column; i == 0; i--) {
+        for (int i = column-1; i >= 0; i--) {
             if (board.board[row][i].equals(currentMarker)) {
                 counter++;
                 if (counter == board.winingConditionLength) {
@@ -65,7 +68,7 @@ class GameJudge {
             } else break;
         }
 
-        for (int i = row; i == 0; i--) {
+        for (int i = row-1; i >= 0; i--) {
             if (board.board[i][column].equals(currentMarker)) {
                 counter++;
                 if (counter == board.winingConditionLength) {
@@ -94,7 +97,7 @@ class GameJudge {
             } else break;
         }
 
-        for (int i = row-1, i1 = column-1; i >= 0 && i1 >= 0; i--, i1--) {
+        for (int i = row - 1, i1 = column - 1; i >= 0 && i1 >= 0; i--, i1--) {
             if (board.board[i][i1].equals(currentMarker)) {
                 counter++;
                 if (counter == board.winingConditionLength) {
@@ -123,7 +126,7 @@ class GameJudge {
             } else break;
         }
 
-        for (int i = row+1, i1 = column-1; i < board.rows && i1 >= 0; i++, i1--) {
+        for (int i = row + 1, i1 = column - 1; i < board.rows && i1 >= 0; i++, i1--) {
             if (board.board[i][i1].equals(currentMarker)) {
                 counter++;
                 if (counter == board.winingConditionLength) {
@@ -134,11 +137,26 @@ class GameJudge {
         return false;
     }
 
-    boolean checkIfCurrentPlayerWon(int row, int column, Board board){
-        return checkIfWonDiagonallyDownToUp(row,column,board)
-                ||checkIfWonDiagonallyUpToDown(row,column,board)
-                ||checkIfWonHorizontally(row,column,board)
-                ||checkIfWonVertically(row,column,board);
+    boolean checkIfCurrentPlayerWon(int row, int column, Board board) {
+        return checkIfWonDiagonallyDownToUp(row, column, board)
+                || checkIfWonDiagonallyUpToDown(row, column, board)
+                || checkIfWonHorizontally(row, column, board)
+                || checkIfWonVertically(row, column, board);
     }
 
+    public boolean checkIfTheresADraw(Board board) {
+        int counter = 0;
+
+        for (int i = 0; i < board.rows; i++) {
+            for (int j = 0; j < board.columns; j++) {
+                if (board.board[i][j].equals(Marker.BLANK)) {
+                    counter++;
+                }
+            }
+        }
+        if (counter > 0) {
+            return false;
+        }
+        return true;
+    }
 }

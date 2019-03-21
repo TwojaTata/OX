@@ -23,26 +23,27 @@ public class BoardService {
     OutputAPI outputAPI = new OutputAPI();//TODO do output API
 
 
-    void setBoardConfigAndInitializeBoard() {
+    Board setBoardConfigAndInitializeBoard() {
         board = new Board(outputAPI.getDimensionFromUser("rows"),
                 outputAPI.getDimensionFromUser("columns"),
                 outputAPI.getWiningConditionLengthFromUser());
         board.players = outputAPI.getPlayersInfoFromUser();
         fillBoardWithBlanks(board);
+        return board;
     }
 
     Board initializeDefaultBoard(){
-        board = new Board(5,5,3);
+        board = new Board(3,3,3);
         board.players = new ArrayList<>(2);
-        board.players.add(new Player("PlayerO", true, Marker.CROSS));
-        board.players.add(new Player("PlayerX", false, Marker.CIRCLE));
+        board.players.add(new Player("PlayerO", true, Marker.CIRCLE));
+        board.players.add(new Player("PlayerX", false, Marker.CROSS));
         fillBoardWithBlanks(board);
         return board;
     }
 
     public void displayPlayersInfo(Board board) {
         System.out.println(board.players.toString());
-    }
+    }//TODO do output
 
     /**
      * Sets up a board filled with Marker.BLANK enum,
@@ -77,7 +78,7 @@ public class BoardService {
 
         System.out.println();
         System.out.print("   ");
-        for (int i = 0; i < board.rows; i++) {
+        for (int i = 0; i < board.columns; i++) {
             if (i+1>9){
             System.out.print("|" + (i + 1) + " ");
         } else {
@@ -105,6 +106,8 @@ public class BoardService {
                 System.out.print("----");
             }
         }
+        System.out.println();
+        System.out.println();
     }
 
     int convertCoordinateToInt (String coordinate){

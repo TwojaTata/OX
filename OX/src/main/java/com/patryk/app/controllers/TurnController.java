@@ -15,30 +15,71 @@ class TurnController {
     private InputAPI inputAPI = new InputAPI();
     private OutputAPI outputAPI = new OutputAPI();
     private boolean doWeHaveAWinner = false;
+    private boolean doWeHaveADraw = false;
+    private boolean isMoveValid = false;
+    private boolean isRowValid = false;
+    private boolean isColumnValid = false;
+    private int row, column;
+    private String userAnswerRow;
+    private String userAnswerColumn;
+
 
     void doARound(Board board) {
-        do {
+        resetSettings();
+        while (!doWeHaveAWinner || !doWeHaveADraw) {
             doATurn(board);
-        }while (!doWeHaveAWinner);
+        }
     }
 
     private void doATurn(Board board) {
-        Player currentPlayer = boardServiceAPI.getCurrentPLayer(board);//TODO iplementacja
+        Player currentPlayer = boardServiceAPI.getCurrentPLayer(board);
         boardServiceAPI.displayBoard(board);
         outputAPI.printCurrentPlayer(board);
-        String userAnswerRow = outputAPI.askForRow();
-        inputAPI.validateCoordinate(userAnswerRow, "rows", board);
-        int row = boardServiceAPI.ConvertToInt(userAnswerRow);
-        String userAnswerColumn = outputAPI.askForColumn();//TODO implementacja
-        inputAPI.validateCoordinate(userAnswerColumn, "columns", board);
-        int column = boardServiceAPI.ConvertToInt(userAnswerColumn);
-        boardServiceAPI.validateIfMoveIsLegal(row, column, board);
-        boardServiceAPI.putMarker(board, row, column, currentPlayer);
-        if (boardServiceAPI.checkIfCurrentPlayerWon(row, column,board)){
-            outputAPI.printMessage("Wygrał " + currentPlayer.getName());
+        validateMove(board);
+        boardServiceAPI.putMarker(board, row - 1, column - 1, currentPlayer);
+        if (boardServiceAPI.checkIfCurrentPlayerWon(row - 1, column - 1, board)) {
+            boardServiceAPI.displayBoard(board);
+            outputAPI.printMessage("Player " + currentPlayer.getName() + " won! GG");
             doWeHaveAWinner = true;
+            doWeHaveADraw = true;
         }
-        boardServiceAPI.switchTurns(board);//TODO DZIAŁA ALE SIĘ WYPIERDALA
+        if (!doWeHaveAWinner) {
+            if (boardServiceAPI.checkIfTheresADraw(board)) {
+                boardServiceAPI.displayBoard(board);
+                outputAPI.printMessage("It's a draw! GG");
+                doWeHaveADraw = true;
+                doWeHaveAWinner = true;
+            }
+        }
+        boardServiceAPI.switchTurns(board);
+    }
+
+    private void validateMove(Board board) {
+        do {
+            validateRow(board);
+            validateColumn(board);
+            isMoveValid = boardServiceAPI.validateIfMoveIsLegal(row - 1, column - 1, board);
+        } while (!isMoveValid);
+    }
+
+    private void validateRow(Board board) {
+        do {
+            userAnswerRow = outputAPI.askForRow();
+            isRowValid = inputAPI.validateCoordinate(userAnswerRow, "rows", board);
+        } while (!isRowValid);
+        row = boardServiceAPI.ConvertToInt(userAnswerRow);
+    }
+
+    private void validateColumn(Board board) {
+        do {
+            userAnswerColumn = outputAPI.askForColumn();
+            isColumnValid = inputAPI.validateCoordinate(userAnswerColumn, "columns", board);
+        } while (!isColumnValid);
+        column = boardServiceAPI.ConvertToInt(userAnswerColumn);
+    }
+    private void resetSettings(){
+        doWeHaveAWinner=false;
+        doWeHaveADraw=false;
     }
 
 }
