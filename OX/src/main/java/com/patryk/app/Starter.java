@@ -1,4 +1,4 @@
-import com.patryk.app.Game;
+package com.patryk.app;
 
 /**
  * @author Patryk Kucharski

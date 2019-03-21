@@ -10,7 +10,7 @@ Data        |                      Pesymistyczna                    |           
 
 20.03       |Walidacja inputu użytkownika, drukowanie stołu         |robienie tur, operacje na stole                       |walidacja zwycięzcy
 
-21.03       |walidacja zwycięzcy                                    |
+21.03       |walidacja zwycięzcy                                    |zmiana wersji językowej                               |Poddawanie gry/ Bo3
 
 
 
